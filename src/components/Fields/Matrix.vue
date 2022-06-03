@@ -24,9 +24,6 @@
               :key="column.model"
               :aria-label="column.label"
             >
-              <!-- <span class="text-body-2 font-weight-medium">{{
-                column.label
-              }}</span> -->
               <div class="column">
                 <span class="text-body-2 font-weight-medium">
                   {{ column.label }}

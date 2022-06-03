@@ -1,23 +1,11 @@
 <template>
-  <div>
-    <label for="label">Label</label>
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="label"
-        aria-describedby="basic-addon3"
-        v-model="modelValue"
-      />
-      <div v-if="!noDeleteBtn" class="input-group-append">
-        <vs-button
-          color="danger"
-          icon="delete"
-          @click="$emit('onDelete')"
-        ></vs-button>
-      </div>
-    </div>
-  </div>
+  <v-text-field
+    dense
+    outlined
+    :label="label"
+    append-outer-icon="mdi-delete"
+    @click:append-outer="$emit('onDelete')"
+  />
 </template>
 
 <script>
@@ -29,6 +17,10 @@ export default {
       default: "",
     },
     noDeleteBtn: Boolean,
+    label: {
+      type: String,
+      default: "Label",
+    },
   },
   computed: {
     modelValue: {
@@ -40,6 +32,7 @@ export default {
       },
     },
   },
+  emits: ["onDelete"],
 };
 </script>
 

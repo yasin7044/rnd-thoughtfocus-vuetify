@@ -12,6 +12,10 @@ const routes = [
     path: "/vuetify-form",
     component: () => import("../pages/WiseboxsFormGenerator.vue"),
   },
+  {
+    path: "/form-builder",
+    component: () => import("../pages/DemoFormBuilder.vue"),
+  },
 ];
 
 const router = new VueRouter({

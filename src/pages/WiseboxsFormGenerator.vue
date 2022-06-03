@@ -10,7 +10,7 @@
         class="frame"
       />
     </v-form>
-    <pre>{{ model }}</pre>
+    <!-- <pre>{{ model }}</pre> -->
   </v-container>
 </template>
 <script>
@@ -33,7 +33,6 @@ export default {
         dataTable: [
           {
             firstName: "John",
-            lastName: "Doe",
             raceOrEthnicity: "White",
             gender: "Women",
             status: "Active",
@@ -121,7 +120,8 @@ export default {
         dataTable: {
           type: "FieldDataTable",
           label: "Faculty Members",
-          columns: [
+          isAddButtonRequired: true,
+          headers: [
             {
               text: "First Name",
               value: "firstName",

@@ -97,6 +97,7 @@ export default {
     columns: {
       get() {
         if (!this.modelValue.columns) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.columns = [];
         }
         return this.modelValue.columns;
@@ -111,6 +112,7 @@ export default {
     rows: {
       get() {
         if (!this.modelValue.rows) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.rows = [];
         }
         return this.modelValue.rows;
@@ -125,6 +127,7 @@ export default {
     columnsFields: {
       get() {
         if (!this.modelValue.columnsFields) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.columnsFields = [];
         }
         return this.modelValue.columnsFields;
