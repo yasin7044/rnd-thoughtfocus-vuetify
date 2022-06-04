@@ -57,8 +57,13 @@ export default {
         }),
         this.getField({
           type: "FieldDataTable",
-          builderLabel: "FieldDataTable",
+          builderLabel: "Field Data Table",
           componentName: "FieldDataTableBuilder",
+        }),
+        this.getField({
+          type: "FieldFileUploader",
+          builderLabel: "Field File Uploader",
+          componentName: "FieldFileUploaderBuilder",
         }),
       ],
       selectedItem: 1,
@@ -94,7 +99,7 @@ export default {
       //     return { ...commonField, props: vueMultiSelectOption };
       //   }
       // }
-      return { ...fieldProps };
+      return { ...fieldProps, label: "" };
     },
   },
 };

@@ -102,7 +102,7 @@
       <v-icon small @click="deleteItem(index)"> mdi-delete </v-icon>
     </template>
     <template v-slot:footer>
-      <pre>Value: {{ modelValue }}</pre>
+      <pre>Value: {{ obj }}</pre>
       <pre>Headers / Columns: {{ computedHeaders }}</pre>
       <pre>Schema: {{ computedSchema }}</pre>
     </template>
@@ -126,6 +126,7 @@ export default {
       default: () => [],
     },
     isAddButtonRequired: Boolean,
+    obj: Object,
   },
   data: () => ({
     dialog: false,

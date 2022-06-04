@@ -15,7 +15,7 @@
 </template>
 <script>
 // Javascript
-import VFormBase from "vuetify-form-base";
+import VFormBase from "components/VFormBase.vue";
 
 const fileObjectToString = (val) => `${val.name} - (File Object)`;
 
@@ -24,33 +24,23 @@ export default {
   data() {
     return {
       model: {
+        user: "sa",
         password: "abcdefgh",
         color: "#00E",
         slider: 50,
         checkbox: true,
         file: [],
-        matrix: {},
-        dataTable: [
-          {
-            firstName: "John",
-            raceOrEthnicity: "White",
-            gender: "Women",
-            status: "Active",
-          },
-          {
-            firstName: "Sadique",
-            lastName: "Inam",
-            raceOrEthnicity: "White",
-            gender: "Men",
-            status: "Active",
-          },
-        ],
+        matrix: {
+          sad: "sad",
+        },
+        dataTable: [],
       },
       schema: {
         user: "text", // string shorthand
         password: {
           type: "password",
           clearable: true,
+          visible: this.isVisible,
         },
         gender: {
           label: "Gender",
@@ -58,12 +48,14 @@ export default {
           type: "select",
           outlined: true,
           items: ["Men", "Women", "Other"],
+          visible: this.isVisible,
         },
         dateText: {
           type: "date",
           ext: "text",
           locale: "en",
           text: { label: "Date", outlined: true, prependIcon: "mdi-calendar" },
+          visible: this.isVisible,
         },
         matrix: {
           type: "FieldMatrix",
@@ -116,57 +108,40 @@ export default {
               model: "other",
             },
           ],
+          isVisibleValue: "aa",
+          isVisibleDependModel: "user",
+          hidden: false,
+          visible: this.isVisible,
         },
         dataTable: {
           type: "FieldDataTable",
-          label: "Faculty Members",
-          isAddButtonRequired: true,
+          builderLabel: "Field Data Table",
+          componentName: "FieldDataTableBuilder",
+          label: "Data Table",
           headers: [
             {
               text: "First Name",
-              value: "firstName",
               type: "text",
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              value: "value-1",
             },
             {
               text: "Last Name",
-              value: "lastName",
               type: "text",
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
-            },
-            {
-              text: "Race / Ethnicity",
-              value: "raceOrEthnicity",
-              type: "select",
-              items: ["White", "Black or African American", "select"],
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              value: "value-2",
             },
             {
               text: "Gender",
-              value: "gender",
               type: "select",
-              items: ["Men", "Women", "Other"],
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              value: "value-3",
+              items: ["Male", "Female", "Other"],
             },
             {
-              text: "Status",
-              value: "status",
-              type: "select",
-              items: ["Active", "Inactive"],
-              hideInTable: true,
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              text: "Age",
+              type: "number",
+              value: "value-4",
             },
           ],
+          visible: this.isVisible,
         },
       },
     };
@@ -174,6 +149,7 @@ export default {
   methods: {
     log(val) {
       console.log(val);
+      return false;
     },
     replacer(key, value) {
       if (typeof value === "function") {
@@ -187,6 +163,17 @@ export default {
         return fileObjectToString(value);
       }
       return value;
+    },
+    isVisible(model, schema) {
+      if (schema?.isVisibleValue && schema?.isVisibleDependModel) {
+        return model[schema.isVisibleDependModel] === schema.isVisibleValue;
+      }
+      return true;
+    },
+  },
+  computed: {
+    getFalse() {
+      return true;
     },
   },
 };

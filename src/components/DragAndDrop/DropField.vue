@@ -8,12 +8,17 @@
       <v-expansion-panels popout>
         <v-expansion-panel v-for="(eachField, index) in schema" :key="index">
           <v-expansion-panel-header>
-            <span>{{ eachField.builderLabel }}</span>
-            <v-spacer />
+            <div class="row justify-space-between mr-2">
+              <span>{{ eachField.builderLabel }} -> {{ eachField.label }}</span>
 
-            <v-icon small @click="deleteField(index)" color="pink">
-              mdi-delete
-            </v-icon>
+              <v-icon
+                small
+                @click.prevent.stop="deleteField(index)"
+                color="pink"
+              >
+                mdi-delete
+              </v-icon>
+            </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <component :is="eachField.componentName" v-model="schema[index]" />
@@ -48,7 +53,14 @@ export default {
   data() {
     return {
       active: false,
-      schema: [],
+      schema: [
+        {
+          type: "FieldFileUploader",
+          builderLabel: "Field File Uploader",
+          componentName: "FieldFileUploaderBuilder",
+          label: "",
+        },
+      ],
       model: {},
     };
   },
