@@ -1,7 +1,7 @@
 // HTML
 <template>
   <v-container fluid>
-    <v-form>
+    <v-form class="pa-4">
       <!-- vuetif-form-base component -->
       <v-form-base
         :model="model"
@@ -15,7 +15,7 @@
 </template>
 <script>
 // Javascript
-import VFormBase from "vuetify-form-base";
+import VFormBase from "components/VFormBase.vue";
 
 const fileObjectToString = (val) => `${val.name} - (File Object)`;
 
@@ -24,149 +24,135 @@ export default {
   data() {
     return {
       model: {
+        user: "aa",
         password: "abcdefgh",
-        color: "#00E",
+        color: "#00isVisibleValueE",
         slider: 50,
         checkbox: true,
         file: [],
-        matrix: {},
-        dataTable: [
-          {
-            firstName: "John",
-            raceOrEthnicity: "White",
-            gender: "Women",
-            status: "Active",
-          },
-          {
-            firstName: "Sadique",
-            lastName: "Inam",
-            raceOrEthnicity: "White",
-            gender: "Men",
-            status: "Active",
-          },
-        ],
+        matrix: {
+          sad: "sad",
+        },
+        dataTable: [],
       },
       schema: {
         user: "text", // string shorthand
         password: {
           type: "password",
+          label: "Password",
           clearable: true,
+          visible: this.isVisible,
         },
-        gender: {
-          label: "Gender",
-          model: "gender",
-          type: "select",
-          outlined: true,
-          items: ["Men", "Women", "Other"],
+        fieldFileUploader: {
+          type: "FieldFileUploader",
+          label: "Upload file",
         },
-        dateText: {
-          type: "date",
-          ext: "text",
-          locale: "en",
-          text: { label: "Date", outlined: true, prependIcon: "mdi-calendar" },
-        },
-        matrix: {
-          type: "FieldMatrix",
-          label: "Matrix",
-          columns: [
-            {
-              label: "Testing Column1",
-              model: "col1",
-              fields: [
-                {
-                  label: "SuperMen",
-                  model: "superMen",
-                },
-                {
-                  label: "WonderWomen",
-                  model: "wonderWomen",
-                },
-                {
-                  label: "Hulk",
-                  model: "hulk",
-                },
-              ],
-            },
-            {
-              label: "Testing column 2",
-              model: "col2",
-            },
-            {
-              label: "Testing column 3",
-              model: "col3",
-            },
-          ],
-          rows: [
-            { label: "Testing Row 1", model: "row1", isInSubtotal: true },
-            { label: "Testing Row 2", model: "row2", isInSubtotal: true },
-            { label: "Testing Row 3", model: "row3", noInputFields: true },
-            { label: "Testing Row 4", model: "row4" },
-          ],
-          columnsFields: [
-            {
-              label: "Men",
-              model: "men",
-            },
-            {
-              label: "Women",
-              model: "women",
-            },
-            {
-              label: "Other",
-              model: "other",
-            },
-          ],
+        // gender: {
+        //   label: "Gender",
+        //   model: "gender",
+        //   type: "select",
+        //   outlined: true,
+        //   items: ["Men", "Women", "Other"],
+        //   visible: this.isVisible,
+        // },
+        // dateText: {
+        //   type: "date",
+        //   ext: "text",
+        //   locale: "en",
+        //   text: { label: "Date", outlined: true, prependIcon: "mdi-calendar" },
+        //   visible: this.isVisible,
+        // },
+        // matrix: {
+        //   type: "FieldMatrix",
+        //   label: "Matrix",
+        //   columns: [
+        //     {
+        //       label: "Testing Column1",
+        //       model: "col1",
+        //       fields: [
+        //         {
+        //           label: "SuperMen",
+        //           model: "superMen",
+        //         },
+        //         {
+        //           label: "WonderWomen",
+        //           model: "wonderWomen",
+        //         },
+        //         {
+        //           label: "Hulk",
+        //           model: "hulk",
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       label: "Testing column 2",
+        //       model: "col2",
+        //     },
+        //     {
+        //       label: "Testing column 3",
+        //       model: "col3",
+        //     },
+        //   ],
+        //   rows: [
+        //     { label: "Testing Row 1", model: "row1", isInSubtotal: true },
+        //     { label: "Testing Row 2", model: "row2", isInSubtotal: true },
+        //     { label: "Testing Row 3", model: "row3", noInputFields: true },
+        //     { label: "Testing Row 4", model: "row4" },
+        //   ],
+        //   columnsFields: [
+        //     {
+        //       label: "Men",
+        //       model: "men",
+        //     },
+        //     {
+        //       label: "Women",
+        //       model: "women",
+        //     },
+        //     {
+        //       label: "Other",
+        //       model: "other",
+        //     },
+        //   ],
+        //   isVisibleValue: "aa",
+        //   isVisibleDependModel: "user",
+        //   hidden: false,
+        //   visible: this.isVisible,
+        // },
+        rad: {
+          type: "radio",
+          label: "Radio",
+          options: ["a", "b", "c"],
         },
         dataTable: {
           type: "FieldDataTable",
-          label: "Faculty Members",
+          builderLabel: "Field Data Table",
+          componentName: "FieldDataTableBuilder",
+          label: "Data Table",
           isAddButtonRequired: true,
           headers: [
             {
               text: "First Name",
-              value: "firstName",
               type: "text",
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              value: "value-1",
             },
             {
               text: "Last Name",
-              value: "lastName",
               type: "text",
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
-            },
-            {
-              text: "Race / Ethnicity",
-              value: "raceOrEthnicity",
-              type: "select",
-              items: ["White", "Black or African American", "select"],
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              value: "value-2",
             },
             {
               text: "Gender",
-              value: "gender",
               type: "select",
-              items: ["Men", "Women", "Other"],
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              value: "value-3",
+              items: ["Male", "Female", "Other"],
             },
             {
-              text: "Status",
-              value: "status",
-              type: "select",
-              items: ["Active", "Inactive"],
-              hideInTable: true,
-              outlined: true,
-              isEditable: true,
-              isDeletable: true,
+              text: "Age",
+              type: "number",
+              value: "value-4",
             },
           ],
+          visible: this.isVisible,
         },
       },
     };
@@ -174,6 +160,7 @@ export default {
   methods: {
     log(val) {
       console.log(val);
+      return false;
     },
     replacer(key, value) {
       if (typeof value === "function") {
@@ -187,6 +174,17 @@ export default {
         return fileObjectToString(value);
       }
       return value;
+    },
+    isVisible(model, schema) {
+      if (schema?.isVisibleValue && schema?.isVisibleDependModel) {
+        return model[schema.isVisibleDependModel] === schema.isVisibleValue;
+      }
+      return true;
+    },
+  },
+  computed: {
+    getFalse() {
+      return true;
     },
   },
 };

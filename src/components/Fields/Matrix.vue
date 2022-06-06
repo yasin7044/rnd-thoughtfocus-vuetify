@@ -61,6 +61,7 @@
                   :required="field.required"
                   :readonly="field.readonly"
                   @input="onInput(field, row, column, $event)"
+                  hide-details
                 ></v-text-field>
               </div>
             </td>
@@ -88,6 +89,7 @@
                   "
                   :disabled="field.disabled"
                   :required="field.required"
+                  hide-details
                   readonly
                 ></v-text-field>
               </div>
@@ -116,6 +118,7 @@
                   "
                   :disabled="field.disabled"
                   :required="field.required"
+                  hide-details
                   readonly
                 ></v-text-field>
               </div>
@@ -264,13 +267,9 @@ export default {
   padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 
   ::v-deep {
-    .v-text-field__details {
-      display: none !important;
-    }
-
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;

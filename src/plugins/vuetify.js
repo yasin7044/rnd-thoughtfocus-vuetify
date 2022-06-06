@@ -1,75 +1,12 @@
 // src/plugins/vuetify.js
 import Vue from "vue";
-import Vuetify, {
-  VRow,
-  VCol,
-  VTextField,
-  VTooltip,
-  VCheckbox,
-  VSelect,
-  VSlider,
-  VFileInput,
-  VColorPicker,
-  VMenu,
-  VDataTable,
-  VDataTableHeader,
-  VDataFooter,
-  VEditDialog,
-  VSimpleCheckbox,
-  VDatePicker,
-  VBtn,
-  VList,
-  VListGroup,
-  VListItem,
-  VListItemAction,
-  VListItemActionText,
-  VListItemAvatar,
-  VListItemContent,
-  VListItemGroup,
-  VListItemIcon,
-  VListItemTitle,
-  VListItemSubtitle,
-} from "vuetify/lib";
-import {
-  Ripple,
-  Intersect,
-  Touch,
-  Resize,
-  ClickOutside,
-} from "vuetify/lib/directives";
+import Vuetify from "vuetify/lib";
+import * as components from "vuetify/lib/components";
+import * as directives from "vuetify/lib/directives";
 
 Vue.use(Vuetify, {
-  components: {
-    VRow,
-    VTooltip,
-    VCol,
-    VBtn,
-    VTextField,
-    VCheckbox,
-    VSelect,
-    VSlider,
-    VFileInput,
-    VColorPicker,
-    VMenu,
-    VDataTable,
-    VDataTableHeader,
-    VDataFooter,
-    VEditDialog,
-    VSimpleCheckbox,
-    VDatePicker,
-    VList,
-    VListGroup,
-    VListItem,
-    VListItemAction,
-    VListItemActionText,
-    VListItemAvatar,
-    VListItemContent,
-    VListItemGroup,
-    VListItemIcon,
-    VListItemTitle,
-    VListItemSubtitle,
-  },
-  directives: { Ripple, Intersect, Touch, Resize, ClickOutside },
+  components,
+  directives,
 });
 
 export default new Vuetify({

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import DragField from "../components/DragAndDrop/DragField.vue";
-import DropField from "../components/DragAndDrop/DropField.vue";
+import DragField from "components/DragAndDrop/DragField.vue";
+import DropField from "components/DragAndDrop/DropField.vue";
 
 export default {
   components: {

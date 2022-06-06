@@ -27,38 +27,6 @@
 
             <v-card-text>
               <v-container>
-                <!-- <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Dessert name"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
-                    ></v-text-field>
-                  </v-col>
-                </v-row> -->
                 <v-form>
                   <!-- vuetif-form-base component -->
                   <v-form-base
@@ -102,9 +70,9 @@
       <v-icon small @click="deleteItem(index)"> mdi-delete </v-icon>
     </template>
     <template v-slot:footer>
-      <pre>Value: {{ modelValue }}</pre>
+      <!-- <pre>Value: {{ obj }}</pre>
       <pre>Headers / Columns: {{ computedHeaders }}</pre>
-      <pre>Schema: {{ computedSchema }}</pre>
+      <pre>Schema: {{ computedSchema }}</pre> -->
     </template>
   </v-data-table>
 </template>
@@ -126,6 +94,7 @@ export default {
       default: () => [],
     },
     isAddButtonRequired: Boolean,
+    obj: Object,
   },
   data: () => ({
     dialog: false,
@@ -137,7 +106,7 @@ export default {
   computed: {
     modelValue: {
       get() {
-        return this.value;
+        return this.value ?? [];
       },
       set(value) {
         this.$emit("input", value);
@@ -212,10 +181,18 @@ export default {
     },
 
     save() {
+      if (!this.value) {
+        this.modelValue = [];
+      }
+
+      console.log(this.modelValue);
+      console.log(this.item);
       if (this.editedIndex > -1) {
         Object.assign(this.modelValue[this.editedIndex], this.item);
       } else {
-        this.modelValue.push(this.item);
+        this.$nextTick(() => {
+          this.modelValue.push(this.item);
+        });
       }
       this.close();
     },
